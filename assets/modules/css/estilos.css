@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+*{
+	box-sizing: border-box;
+	font-family: Montserrat;
+}
+
+.navbar{
+	width: 100%;
+	z-index: 100;
+	position: fixed;
+}
+
+.carousel{
+	padding-top: 70px;
+}
+
+.carousel-caption{
+	background: rgba(0,0,0,0.6);
+}
+
+#acl-nosotros, #acl-contactenos{
+	height: 50px;
+}
+
+.titulo{
+	height: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.contactenos{
+	padding: 70px;
+	background-image: url(../img/fondo_form.jpg);
+	background-size: cover;
+}
+
+.mapa{
+	padding: 0;
+}
