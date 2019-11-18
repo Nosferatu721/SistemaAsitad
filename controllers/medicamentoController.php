@@ -27,6 +27,13 @@ class MedicamentoController
     require_once 'views/medicamento/crud.php';
   }
 
+  public function pdf()
+  {
+    $m = new Medicamento();
+    $dataM = $m->findAll();
+    require_once 'lib/pdf/medicamentos/pdf.php';
+  }
+
   public function registrar()
   {
     if (isset($_POST) && $_POST['nombre']  && $_POST['descripcion'] && $_POST['unidades'] && $_POST['tipo'] && $_POST['laboratorio'] && $_POST['fecha']) {

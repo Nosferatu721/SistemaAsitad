@@ -163,6 +163,9 @@
       </tbody>
     </table>
 
+    <div class="d-flex justify-content-center mb-2">
+      <a href="<?= baseUrl; ?>donacion/pdf" target="blank" class="btn btn-danger">PDF</a>
+    </div>
   </div>
 
   <!-- Se llama el footer -->

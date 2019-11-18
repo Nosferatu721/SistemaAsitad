@@ -33,6 +33,13 @@ class ActividadController
     require_once 'views/actividad/crud.php';
   }
 
+  public function pdf()
+  {
+    $a = new Actividad();
+    $dataA = $a->findAll();
+    require_once 'lib/pdf/actividad/pdf.php';
+  }
+
   public function registrar()
   {
     if (isset($_POST)  && $_POST['nombreActividad'] && $_POST['horaActividad']&& $_POST['abuelito_idAbuelito']&& $_POST['usuario_idUsuario'] && $_POST['tipoActividad'] && $_POST['fechaActividad']) {

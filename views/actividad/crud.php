@@ -59,23 +59,23 @@
               <?php endwhile; ?>
             </select>
           </div>
-          
+
 
           <div class="form-group col-6">
             <span>abuelito</span><br>
-            <select class ="custom-select mr-sm-2 mt-1" name="abuelito_idAbuelito" id="abuelito_idAbuelito">
-                <option>elije..</option>
-                <?php $abuel= AbuelitoController::getAll(); ?>
-                <?php while ($a= $abuel->fetch_object()): ?>
-                    <option value ="<?= $a->idAbuelito;?>"><?= $a->nombreAbuelito; ?></option>
-                <?php endwhile; ?>
+            <select class="custom-select mr-sm-2 mt-1" name="abuelito_idAbuelito" id="abuelito_idAbuelito">
+              <option>elije..</option>
+              <?php $abuel = AbuelitoController::getAll(); ?>
+              <?php while ($a = $abuel->fetch_object()) : ?>
+                <option value="<?= $a->idAbuelito; ?>"><?= $a->nombreAbuelito; ?></option>
+              <?php endwhile; ?>
             </select>
           </div>
-          
+
           <div class="form-group col-6">
-            
-          <input type="submit" class="btn btn-primary btn-sm btn-block col-6 offset-3 mb-3" value="Registrar">
-        </div>
+
+            <input type="submit" class="btn btn-primary btn-sm btn-block col-6 offset-3 mb-3" value="Registrar">
+          </div>
       </form>
 
     <?php else : ?>
@@ -88,13 +88,13 @@
           </div>
           <div class="form-group col-6">
             <label for="nombreActividad">nombre Actividad</label>
-            <input id="nombreActividad" name="nombreActividad" class="form-control" type="text" value="<?= $r->nombreActividad?>">
+            <input id="nombreActividad" name="nombreActividad" class="form-control" type="text" value="<?= $r->nombreActividad ?>">
           </div>
           <div class="form-group col-6">
             <label for="horaActividad">hora Actividad </label>
             <textarea class="form-control" id="horaActividad" name="horaActividad"><?= $r->horaActividad ?></textarea>
           </div>
-         
+
           <div class="col-6">
             <span>Tipo Actividad</span><br>
             <select class="custom-select mr-sm-2 mt-1" name="Tipo" id="tipo">
@@ -116,20 +116,20 @@
           </div>
           <div class="form-group col-6">
             <span>abuelito</span><br>
-            <select class ="custom-select mr-sm-2 mt-1" name="abuelito_idAbuelito" id="abuelito_idAbuelito">
-                <option>elije..</option>
-                <?php $abue= AbuelitoController::getAll(); ?>
-                <?php while ($abu= $abue->fetch_object()): ?>
-                    <option value ="<?= $abu->idAbuelito;?>"><?= $abu->nombreAbuelito; ?></option>
-                <?php endwhile; ?>
+            <select class="custom-select mr-sm-2 mt-1" name="abuelito_idAbuelito" id="abuelito_idAbuelito">
+              <option>elije..</option>
+              <?php $abue = AbuelitoController::getAll(); ?>
+              <?php while ($abu = $abue->fetch_object()) : ?>
+                <option value="<?= $abu->idAbuelito; ?>"><?= $abu->nombreAbuelito; ?></option>
+              <?php endwhile; ?>
             </select>
           </div>
 
           <div class="form-group col-6">
-            
-          <input type="submit" class="btn btn-primary btn-sm btn-block col-6 offset-3 mb-3" value="actualizar">
-        </div>
-          
+
+            <input type="submit" class="btn btn-primary btn-sm btn-block col-6 offset-3 mb-3" value="actualizar">
+          </div>
+
       </form>
     <?php endif; ?>
 
@@ -152,12 +152,12 @@
           <tr>
             <td><?= $ac->fechaActividad ?></td>
             <td><?= $ac->nombreActividad ?></td>
-            <td><?= $ac->horaActividad?></td>
+            <td><?= $ac->horaActividad ?></td>
             <td><?= $ac->tipoActividad ?></td>
             <td><?= $ac->nombre ?></td>
             <td><?= $ac->nombreAbuelito ?></td>
             <td>
-              
+
               <a href="<?= baseUrl ?>actividad/eliminar&id=<?= $ac->id ?>" class="btn btn-danger">Eliminar</a>
               <a href="<?= baseUrl ?>actividad/gestion&id=<?= $ac->id ?>" class="btn btn-info">Editar</a>
             </td>
@@ -166,6 +166,9 @@
       </tbody>
     </table>
 
+    <div class="d-flex justify-content-center mb-2">
+      <a href="<?= baseUrl; ?>actividad/pdf" target="blank" class="btn btn-danger">PDF</a>
+    </div>
   </div>
 
   <!-- Se llama el footer -->

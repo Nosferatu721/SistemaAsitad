@@ -34,6 +34,13 @@ class DonacionController
     require_once 'views/donacion/crud.php';
   }
 
+  public function pdf()
+  {
+    $d = new Donacion();
+    $dataD = $d->findAll();
+    require_once 'lib/pdf/donacion/pdf.php';
+  }
+
   public function registrar()
   {
     if (isset($_POST) && $_POST['valor']  && $_POST['fecha'] && $_POST['tipo'] && $_POST['abuelito_idAbuelito'] && $_POST['usuario_idUsuario'] && $_POST['descripcion']) {
