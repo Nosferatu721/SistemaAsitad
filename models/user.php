@@ -153,43 +153,7 @@ class User
     $usuarios = $this->db->query($sql);
     return $usuarios->fetch_object();
   }
-  public function asitadUsers()
-  {
-    $sql = "CALL asitad (@a, @b, @c, @d)";
-    $r = $this->db->query($sql);
-    $all = [];
-    while ($fila = mysqli_fetch_assoc($r)) {
-      array_push($all, $fila);
-    }
-    //cantidad de usarios
-    $countAdmin = (int) $all[0]['UsersAdmin'];
-    $countPadrino = (int) $all[0]['UsersPadrino'];
-    $countMedico = (int) $all[0]['UsersMedico'];
-    $countPracticante = (int) $all[0]['UsersPracticante'];
-
-    $allUsers = $countAdmin + $countPadrino + $countMedico + $countPracticante;
-
-    $porcenAdmin = bcdiv(($countAdmin / $allUsers) * 100, '1', 2);
-    $porcenPadrino = bcdiv(($countPadrino / $allUsers) * 100, '1', 2);
-    $porcenMedico = bcdiv(($countMedico / $allUsers) * 100, '1', 2);
-    $porcenPracticante = bcdiv(($countPracticante / $allUsers) * 100, '1', 2);
-
-    //porcentajes
-
-    $arr = [
-      [(float) $porcenAdmin],
-      [(float) $porcenPadrino],
-      [(float) $porcenMedico],
-      [(float) $porcenPracticante]
-    ];
-    return $arr;
-  }
-  public function activos()
-  {
-    $sql = "CALL activos(@a, @b)";
-    $r = $this->db->query($sql);
-    return $r;
-  }
+  
   public function delete()
   {
     $sql = "UPDATE usuarios SET estado='{$this->getEstado()}'WHERE 	idUsuario={$this->id}";

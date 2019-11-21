@@ -3,22 +3,22 @@ require_once 'models/user.php';
 
 class UserController
 {
-  public function gestion(){
-    $u= new User();
-    $use= $u->findAll();
-    $u2= new User();
-    $rol= $u2->findRol();
-    if(isset($_GET['id'])){
-      $id= $_GET['id'];
-      if($id==''){
-        header('Location:'.baseUrl.'error/index');
+  public function gestion()
+  {
+    $u = new User();
+    $use = $u->findAll();
+    $u2 = new User();
+    $rol = $u2->findRol();
+    if (isset($_GET['id'])) {
+      $id = $_GET['id'];
+      if ($id == '') {
+        header('Location:' . baseUrl . 'error/index');
       }
-      $u3= new User();
+      $u3 = new User();
       $u3->setId($id);
-      $r= $u3->findId();
+      $r = $u3->findId();
     }
     require_once 'views/usuario/crud.php';
-
   }
   public function index()
   {
@@ -64,14 +64,14 @@ class UserController
   }
   public function registrar()
   {
-   // var_dump($_POST); die ();
-    if (isset($_POST) && $_POST['nombre']  && $_POST['apellido'] && $_POST['correo'] && $_POST['contrasena'] && $_POST ['rol']) {
+    // var_dump($_POST); die ();
+    if (isset($_POST) && $_POST['nombre']  && $_POST['apellido'] && $_POST['correo'] && $_POST['contrasena'] && $_POST['rol']) {
       // Guardar los datos en variables
       $nombre = $_POST['nombre'];
       $apellido = $_POST['apellido'];
       $correo = $_POST['correo'];
       $contrasena = $_POST['contrasena'];
-      $rol= $_POST ['rol'];
+      $rol = $_POST['rol'];
 
       // Instanciar un Objecto User
       $u = new User();
@@ -85,10 +85,10 @@ class UserController
       $r = $u->save();
       if ($r) {
         $_SESSION['registrado'] = true;
-        header('Location: ' . baseUrl.'user/gestion');
+        header('Location: ' . baseUrl . 'user/gestion');
       }
     } else {
-      echo'no registrado';
+      echo 'no registrado';
     }
   }
 
@@ -110,11 +110,11 @@ class UserController
   }
   public function eliminar()
   {
-    if (isset($_GET['id'])){
+    if (isset($_GET['id'])) {
       $id = $_GET['id'];
-      $use= new User();
+      $use = new User();
       $use->setId($id);
-      $us= $use->findId();
+      $us = $use->findId();
       if ($us->estado == 'Activo') {
         $e = 'Inactivo';
       } else {
@@ -124,8 +124,8 @@ class UserController
       $user2->setId($id);
       $user2->setEstado($e);
       $delete = $user2->delete();
-     
-      
+
+
       $_SESSION['estado'] = 'Cambiado';
       if (!$delete) {
         $_SESSION['estado'] = 'Error';
@@ -135,23 +135,24 @@ class UserController
     }
     header('Location: ' . baseUrl . 'user/gestion');
   }
-  public function corre(){
-   
-    if(isset($_POST) && !empty ($_POST['id'])){
-      $e= new User();
-      $dataU= $e->findId();
-      if($dataU && is_object($dataU)){
+  public function corre()
+  {
+
+    if (isset($_POST) && !empty($_POST['id'])) {
+      $e = new User();
+      $dataU = $e->findId();
+      if ($dataU && is_object($dataU)) {
         require_once 'lib/email/contra.php';
-      }else{
-        $_SESSION['correo']= 'ErrorDatos';
-        header('Location:'.baseUrl.'evento/correos');
+      } else {
+        $_SESSION['correo'] = 'ErrorDatos';
+        header('Location:' . baseUrl . 'evento/correos');
       }
-    }else{
-      $_SESSION['correos']= 'Vacios';
-      header('Location:'.baseUrl.'evento/correos');
+    } else {
+      $_SESSION['correos'] = 'Vacios';
+      header('Location:' . baseUrl . 'evento/correos');
     }
   }
-//PDF USUARIOS
+  // PDF USUARIOS
   public function pdf()
   {
     $u = new Usuario();
@@ -159,5 +160,37 @@ class UserController
     $u2 = new Usuario();
     $porcent = $u2->countUsers();
     require_once 'lib/pdf/usuarios/pdfUsuarios.php';
+  }
+  // INGLES
+  public function lang()
+  {
+    if (isset($_GET['l']) && $_GET['l'] != '') {
+      $l = $_GET['l'];
+      if ($l == 'en') {
+        $_SESSION['l'] = $l;
+      } elseif ($l == 'es') {
+        $_SESSION['l'] = langDefault;
+      }
+      header('Location: ' . baseUrl . 'user/index');
+    } else {
+      header('Location: ' . baseUrl . 'error/index');
+    }
+  }
+  // Certificado
+  public function cert()
+  {
+    require_once 'views/usuario/certificado.php';
+  }
+
+  public function certPDF()
+  {
+    if ($_POST['user'] == 'Elija...') {
+      header('Location: ' . baseUrl . 'user/cert');
+    } else {
+      $u = new User();
+      $u->setId($_POST['user']);
+      $dataUser = $u->findUId();
+      require_once 'lib/pdf/usuarios/certificado.php';
+    }
   }
 }

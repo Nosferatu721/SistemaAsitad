@@ -4,8 +4,16 @@ require_once 'config/db.php';
 require_once 'autoload.php';
 require_once 'config/parameters.php';
 require_once 'helpers/utils.php';
-if (isset($_GET['accion']) && $_GET['accion'] != 'pdf') {
+if (isset($_GET['accion']) && $_GET['accion'] != 'pdf' && $_GET['accion'] != 'certPDF') {
   require_once 'views/layout/header.php';
+}
+
+if (isset($_SESSION['l']) && $_SESSION['l'] == 'es') {
+  require_once 'assets/lang/es.php';
+} elseif (isset($_SESSION['l']) && $_SESSION['l'] == 'en') {
+  require_once 'assets/lang/en.php';
+} else {
+  require_once 'assets/lang/es.php';
 }
 
 // Mostrar Error 404

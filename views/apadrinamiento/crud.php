@@ -30,94 +30,71 @@
             <input id="fechaInicial" name="fechaInicial" class="form-control" type="date">
           </div>
           <div class="form-group col-6">
-              <span>abuelito</span><br>
-              <select class ="custom-select mr-sm-2 mt-1" name="abuelito_idAbuelito" id="abuelito_idAbuelito">
-                  <option>elije..</option>
-                  <?php $abue= AbuelitoController::getAll(); ?>
-                  <?php while ($abu= $abue->fetch_object()): ?>
-                      <option value ="<?= $abu->id;?>"><?= $abu->nombre; ?></option>
-                    <?php endwhile; ?>
-                </select>
-          </div>
-          <div class="form-group col-6">
-            <span>abuelito</span><br>
-            <select class ="custom-select mr-sm-2 mt-1" name="abuelito_idAbuelito" id="abuelito_idAbuelito">
-                <option>elije..</option>
-                <?php $abue= AbuelitoController::getAll(); ?>
-                <?php while ($abu= $abue->fetch_object()): ?>
-                    <option value ="<?= $abu->id;?>"><?= $abu->nombre; ?></option>
-                <?php endwhile; ?>
-            </select>
-          </div>
-          <div class="form-group col-6">
-              <
-            <label for="usuario_idUsuario">usuario_idUsuario Actividad</label>
-            <input id="usuario_idUsuario" name="usuario_idUsuario" class="form-control" type="number">
-          </div>
-          <div class="col-6">
-            <span>Tipo Actividad</span><br>
-            <select class="custom-select mr-sm-2 mt-1" name="tipo" id="tipo">
-              <option>Elija...</option>
-              <?php while ($t = $tipos->fetch_object()) : ?>
-                <option value="<?= $t->idTipoActividad; ?>"><?= $t->tipoActividad; ?></option>
+            <span>Abuelito</span><br>
+            <select class="custom-select mr-sm-2 mt-2" name="abuelito" id="abuelito">
+              <option>Elije..</option>
+              <?php $abue = AbuelitoController::getAll(); ?>
+              <?php while ($abu = $abue->fetch_object()) : ?>
+                <option value="<?= $abu->idAbuelito; ?>"><?= $abu->nombreAbuelito; ?></option>
               <?php endwhile; ?>
             </select>
           </div>
-          <div class="col-6">
-            <span>Usuarios</span><br>
-            <select class="custom-select mr-sm-2 mt-1" name="tipo" id="tipo">
-              <option>Elija...</option>
-              <?php $users = UserController::getAll(); ?>
-              <?php while ($u = $users->fetch_object()) : ?>
-                <option value="<?= $u->id; ?>"><?= $u->nombre; ?></option>
-              <?php endwhile; ?>
-            </select>
-          </div>
-
-          <div class="col-6">
-            <span>Abuelitos</span><br>
-            <select class="custom-select mr-sm-2 mt-1" name="tipo" id="tipo">
-              <option>Elija...</option>
-              <?php $users = UserController::getAll(); ?>
-              <?php while ($u = $users->fetch_object()) : ?>
-                <option value="<?= $u->id; ?>"><?= $u->nombre; ?></option>
-              <?php endwhile; ?>
-            </select>
-          </div>
-          
           <div class="form-group col-6">
-            
-          <input type="submit" class="btn btn-primary btn-sm btn-block col-6 offset-3 mb-3" value="Registrar">
+            <span>Usuario</span><br>
+            <select class="custom-select mr-sm-2 mt-1" name="user" id="user">
+              <option>Elije..</option>
+              <?php $user = UserController::getAll(); ?>
+              <?php while ($u = $user->fetch_object()) : ?>
+                <option value="<?= $u->idUsuario; ?>"><?= $u->nombre; ?></option>
+              <?php endwhile; ?>
+            </select>
+          </div>
+          <div class="form-label-group col-6 py-2">
+            <label for="motivo">Razon <span class="maxN"></span></label>
+            <textarea class="form-control" id="razon" name="razon"></textarea>
+          </div>
+          <div class="form-group col-12">
+            <input type="submit" class="btn btn-primary btn-sm btn-block col-6 offset-3 mb-3 mx-auto" value="Registrar">
+          </div>
         </div>
       </form>
 
     <?php else : ?>
       <!-- Formulario para Editar -->
-      <form action="<?= baseUrl ?>actividad/actualizar&id=<?= $_GET['id'] ?>" method="POST">
+      <form action="<?= baseUrl ?>apadrinamiento/actualizar&id=<?= $_GET['id'] ?>" method="POST">
         <div class="row">
           <div class="form-group col-6">
-            <label for="fecha">fecha Actividad </label>
-            <input id="fecha" name="fecha" class="form-control" type="text" value="<?= $r->fechaActividad ?>">
+            <label for="fechaInicial">Fecha inicial</label>
+            <input id="fechaInicial" name="fechaInicial" class="form-control" type="date" value="<?= $r->fechaInicial ?>">
           </div>
           <div class="form-group col-6">
-            <label for="nombre">nombre Actividad</label>
-            <input id="nombre" name="nombre" class="form-control" type="text" value="<?= $r->nombreActividad?>">
-          </div>
-          <div class="form-group col-6">
-            <label for="hora">hora Actividad </label>
-            <textarea class="form-control" id="hora" name="hora"><?= $r->horaActividad ?></textarea>
-          </div>
-         
-          <div class="col-6">
-            <span>Tipo Actividad</span><br>
-            <select class="custom-select mr-sm-2 mt-1" name="tipo" id="tipo">
-              <option>Elija...</option>
-              <?php while ($t = $tipos->fetch_object()) : ?>
-                <option value="<?= $t->idTiopoActividad; ?>"><?= $t->tipoActividad; ?></option>
+            <span>Abuelito</span><br>
+            <select class="custom-select mr-sm-2 mt-2" name="abuelito" id="abuelito">
+              <option>Elije..</option>
+              <?php $abue = AbuelitoController::getAll(); ?>
+              <?php while ($abu = $abue->fetch_object()) : ?>
+                <option value="<?= $abu->idAbuelito; ?>"><?= $abu->nombreAbuelito; ?></option>
               <?php endwhile; ?>
             </select>
           </div>
-          
+          <div class="form-group col-6">
+            <span>Usuario</span><br>
+            <select class="custom-select mr-sm-2 mt-1" name="user" id="user">
+              <option>Elije..</option>
+              <?php $user = UserController::getAll(); ?>
+              <?php while ($u = $user->fetch_object()) : ?>
+                <option value="<?= $u->idUsuario; ?>"><?= $u->nombre; ?></option>
+              <?php endwhile; ?>
+            </select>
+          </div>
+          <div class="form-label-group col-6 py-2">
+            <label for="motivo">Razon <span class="maxN"></span></label>
+            <textarea class="form-control" id="razon" name="razon"><?= $r->razon ?></textarea>
+          </div>
+          <div class="form-group col-12">
+            <input type="submit" class="btn btn-primary btn-sm btn-block col-6 offset-3 mb-3 mx-auto" value="Actualizar">
+          </div>
+        </div>
       </form>
     <?php endif; ?>
 
@@ -126,27 +103,23 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">fechaActividad</th>
-          <th scope="col">nombreActividad</th>
-          <th scope="col">horaActividad</th>
-          <th scope="col">TipoActividad</th>
+          <th scope="col">Fecha Inicial</th>
+          <th scope="col">Abuelo</th>
           <th scope="col">Usuario</th>
-          <th scope="col">Abuelito</th>
+          <th scope="col">Razon</th>
           <th scope="col">Acciones</th>
         </tr>
       </thead>
       <tbody>
-        <?php while ($med = $actividad->fetch_object()) : ?>
+        <?php while ($ap = $apadrinamiento->fetch_object()) : ?>
           <tr>
-            <td><?= $med->fechaActividad ?></td>
-            <td><?= $med->nombreActividad ?></td>
-            <td><?= $med->horaActividad?></td>
-            <td><?= $med->tipoActividad ?></td>
-            <td><?= $med->usuario_idUsuario ?></td>
-            <td><?= $med->abuelito_idAbuelito ?></td>
+            <td><?= $ap->fechaInicial ?></td>
+            <td><?= $ap->nombreAbuelito ?></td>
+            <td><?= $ap->nombre ?></td>
+            <td><?= $ap->razon ?></td>
             <td>
-              <a href="<?= baseUrl ?>actividad/eliminar&id=<?= $med->idActividad ?>" class="btn btn-danger">Eliminar</a>
-              <a href="<?= baseUrl ?>actividad/gestion&id=<?= $med->idActividad ?>" class="btn btn-info">Editar</a>
+              <a href="<?= baseUrl ?>apadrinamiento/eliminar&id=<?= $ap->id ?>" class="btn btn-danger"><?= $ap->estadoAP == 'Inactiva' ? 'Activar' : 'Inactivar' ?></a>
+              <a href="<?= baseUrl ?>apadrinamiento/gestion&id=<?= $ap->id ?>" class="btn btn-info">Editar</a>
             </td>
           </tr>
         <?php endwhile ?>
