@@ -29,7 +29,8 @@
         <div class="text-center">
           <input type="submit" class="btn btn-outline-info col-6" value="Ingresar">
           <hr>
-          <a href="<?= baseUrl ?>user/registrarme" class="text-danger">Registrarme</a>
+          <a href="<?= baseUrl ?>user/registrarme" class="text-success">Registrarme</a>
+          <a href="<?= baseUrl ?>user/pass" class="text-danger">Olvide mi Contraseña</a>
         </div>
       </form>
     </div>

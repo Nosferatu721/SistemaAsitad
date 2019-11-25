@@ -5,6 +5,17 @@ use Spipu\Html2Pdf\Html2Pdf;
 
 $html2pdf = new Html2Pdf();
 
+// foreach ($dataD as $key) {
+//   var_dump($key);
+//   echo $key['valorDonacion'] . '<br>';
+//   echo $key['fecha'] . '<br>';
+//   echo $key['tipoDonacion'] . '<br>';
+//   echo $key['nombre'] . '<br>';
+//   echo $key['nombreAbuelito'] . '<br>';
+//   echo $key['descripcionDonacion'] . '<br>';
+// }
+// die();
+
 ob_start();
 ?>
 
@@ -37,9 +48,10 @@ ob_start();
       color: blue
     }
 
-    th{
+    th {
       width: 120px
     }
+
     .Head p {
       margin: 2px
     }
@@ -94,24 +106,28 @@ ob_start();
     </div>
     <div class="Body">
       <hr>
-      <h4>Donaciones</h4>
+      <h4>Donacion</h4>
       <hr>
       <table>
         <thead>
           <tr>
-            <th>Usuario</th>
-            <th>Abuelito</th>
             <th>Valor</th>
             <th>Fecha</th>
+            <th>Tipo</th>
+            <th>Usuario</th>
+            <th>Abuelito</th>
+            <th>Descripción</th>
           </tr>
         </thead>
         <tbody>
-          <?php while ($m = $dataD->fetch_object()) : ?>
+          <?php while ($d = $dataD->fetch_object()) : ?>
             <tr>
-              <td><?= $m->usuario_idUsuario ?></td>
-              <td><?= $m->abuelito_idAbuelito ?></td>
-              <td><?= $m->valorDonacion ?></td>
-              <td><?= $m->fecha ?></td>
+              <td><?= $d->valorDonacion ?></td>
+              <td><?= $d->fecha ?></td>
+              <td><?= $d->tipoDonacion ?></td>
+              <td><?= $d->nombre ?></td>
+              <td><?= $d->nombreAbuelito ?></td>
+              <td><?= $d->descripcionDonacion ?></td>
             </tr>
           <?php endwhile; ?>
         </tbody>
@@ -131,4 +147,4 @@ $content = ob_get_clean();
 
 $html2pdf->setDefaultFont('Arial');
 $html2pdf->writeHTML($content);
-$html2pdf->output("PDF.pdf");
+$html2pdf->output("PDFD.pdf");

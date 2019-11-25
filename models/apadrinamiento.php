@@ -102,7 +102,7 @@ class Apadrinamiento
 	//actualizar- editar
 	public function update()
 	{
-		$sql = "UPDATE apadrinamiento SET fechaInicial='{$this->getFechaInicial()}', abuelito_idAbuelito='{$this->getAbuelito_idAbuelito()}',usuario_idUsuario='{$this->getUsuario_idUsuario()}', estado='{$this->getEstado()}',razon='{$this->getRazon()}' WHERE id={$this->getId()}";
+		$sql = "UPDATE apadrinamiento SET fechaInicial='{$this->getFechaInicial()}', abuelito_idAbuelito='{$this->getAbuelito_idAbuelito()}',usuario_idUsuario='{$this->getUsuario_idUsuario()}', razon='{$this->getRazon()}' WHERE id={$this->getId()}";
 		$update = $this->db->query($sql);
 		return $update;
 	}

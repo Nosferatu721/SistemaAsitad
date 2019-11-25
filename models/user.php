@@ -86,12 +86,14 @@ class User
     $users = $this->db->query($sql);
     return $users;
   }
+
   public function findUId()
   {
     $sql = "SELECT * FROM usuarios INNER JOIN rol on usuarios.rol= rol.idRol WHERE idUsuario= '{$this->getId()}'";
     $user = $this->db->query($sql);
     return $user->fetch_object();
   }
+
   public function findId()
   {
     $sql = "SELECT * FROM usuarios INNER JOIN rol ON usuarios.rol = rol.idRol WHERE email='{$this->getCorreo()}'";

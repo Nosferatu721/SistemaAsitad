@@ -30,6 +30,29 @@ class UserController
     require_once 'views/login.php';
   }
 
+  public function pass()
+  {
+    require_once 'views/usuario/pass.php';
+  }
+
+  public function RPass()
+  {
+    if (isset($_POST) && !empty($_POST['correo'])) {
+      $u = new User();
+      $correo = $_POST['correo'];
+      $u->setCorreo($correo);
+      $data = $u->findId();
+      if ($data && is_object($data)) {
+        require_once 'lib/email/contra.php';
+      } else {
+        header('Location: ' . baseUrl . 'user/pass');
+      }
+    } else {
+      $_SESSION['recuperar'] = 'Vacios';
+      header('Location: ' . baseUrl . 'user/pass');
+    }
+  }
+
   public static function getAll()
   {
     $u = new User();

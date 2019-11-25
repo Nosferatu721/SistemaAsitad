@@ -1,1 +1,0 @@
-<img src="<?= baseUrl?>assets/ini/img/error404.png ">

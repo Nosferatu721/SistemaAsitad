@@ -156,7 +156,7 @@
             plotShadow: false
           },
           title: {
-            text: 'Stock del Restaurante'
+            text: 'Medicamentos'
           },
           tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
